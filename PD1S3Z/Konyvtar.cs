@@ -24,9 +24,56 @@ namespace PD1S3Z
             StreamReader sr = new StreamReader("adatok.txt");
             while (!sr.EndOfStream)
             {
-
+                string[] sor = sr.ReadLine().Split(';');
+                keszlet.Beszuras(sorElem(sor));
             }
             sr.Close();
+        }
+        
+        private ILejatszhato sorElem(string[] sor)
+        {
+            switch (sor[0])
+            {
+                case "0":
+                    return new TorrentZene()
+                    {
+                        Cim = sor[1],
+                        SzerzoiJogij = int.Parse(sor[2]),
+                        Hossz = int.Parse(sor[3]),
+                        Stilus = (Stilus)int.Parse(sor[4])
+                    };
+                    break;
+                case "1":
+                    return new VasaroltZene()
+                    {
+                        Cim = sor[1],
+                        SzerzoiJogij = int.Parse(sor[2]),
+                        Hossz = int.Parse(sor[3]),
+                        Stilus = (Stilus)int.Parse(sor[4])
+                    };
+                    break;
+                case "2":
+                    return new Film()
+                    {
+                        Cim = sor[1],
+                        SzerzoiJogij = int.Parse(sor[2]),
+                        Hossz = int.Parse(sor[3]),
+                        Stilus = (Stilus)int.Parse(sor[4])
+                    };
+                    break;
+                case "3":
+                    return new BakelitLemez()
+                    {
+                        Cim = sor[1],
+                        SzerzoiJogij = int.Parse(sor[2]),
+                        Hossz = int.Parse(sor[3]),
+                        Stilus = (Stilus)int.Parse(sor[4])
+                    };
+                    break;
+
+                default:
+                    return null;
+            }
         }
     }
     

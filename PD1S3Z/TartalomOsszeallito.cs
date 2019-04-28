@@ -9,8 +9,17 @@ namespace PD1S3Z
     class TartalomOsszeallito
     {
         //rendezett lancolt
+        public RendezettLancoltLista<ILejatszhato> stilusElemek { get; set; }
+
+        public int ido { get; set; }
         //ido
 
+        public TartalomOsszeallito(int ido, RendezettLancoltLista<ILejatszhato>elemek)
+        {
+
+        }
+
+        
 
     }
 }

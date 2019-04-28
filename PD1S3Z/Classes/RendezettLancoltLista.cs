@@ -18,6 +18,13 @@ namespace PD1S3Z
             public ListaElem kovetkezo;
             public T tartalom;
             public Kulcs kulcs;
+
+            public override string ToString()
+            {
+                return string.Format(tartalom.ToString());
+                //return string.Format("" + tartalom);
+            }
+
         }
         private ListaElem ujElem(T tartalom)
         {
@@ -96,16 +103,31 @@ namespace PD1S3Z
             RendezettLancoltLista<T> stilusElemek = new RendezettLancoltLista<T>();
             //---
             ListaElem p = elsoElemek[(int)stilus];
-            ListaElem e = null;
+            
             while (p != null && p.kulcs == kulcs)
             {
                 stilusElemek.Beszuras(p.tartalom);
-                e = p;
+                
                 p = p.kovetkezo;
-                e = null;
+              
             }
             //---
             return stilusElemek;
+        }
+
+        public void Bejaras()
+        {
+            ListaElem p = fej;
+            while (p != null)
+            {
+                Feldolgoz(p);
+                p = p.kovetkezo;
+            }
+        }
+
+        private void Feldolgoz(ListaElem elem)
+        {
+            Console.WriteLine(elem);
         }
     }
 }

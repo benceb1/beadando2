@@ -8,15 +8,19 @@ namespace PD1S3Z
 {
     class Program
     {
-        static elem<Film>[] elemek = new elem<Film>[4];
+        
         static void Main(string[] args)
         {
-            
+            Konyvtar konnyvtar = new Konyvtar();
+            konnyvtar.Beolvasas();
 
+            //konnyvtar.keszlet.Bejaras();
+            //megrendelõ szavai
+            Console.WriteLine("Milyen stílusban kívánja összeállítani a mûsort az alábbiak közül?\n(Csaladias, Romantikus, Mulatos, Nyalas, RockNRoll,Jazz)");
+            string stilus = Console.ReadLine();
+            Console.WriteLine("Adja meg a kívánt idõ hosszúságát percek számában!");
+            int perc = int.Parse(Console.ReadLine());
         }
     }
-    class elem<T>
-    {
-        public T valami { get; set; }
-    }
+    
 }
