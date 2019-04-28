@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BakelitLemez.cs" />
-    <Compile Include="Classes\ElsoElemek.cs" />
     <Compile Include="Classes\Film.cs" />
     <Compile Include="Classes\Kulcs.cs" />
     <Compile Include="Classes\Lejatszhato.cs" />
@@ -55,6 +54,7 @@
     <Compile Include="Konyvtar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TartalomOsszeallito.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

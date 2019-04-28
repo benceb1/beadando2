@@ -9,19 +9,24 @@ namespace PD1S3Z
 {
     class Konyvtar
     {
-        public ElsoElemek keszlet { get; set; }
-        public RendezettLancoltLista<ILejatszhato> elsoElemek { get; set; }
+        
+        public RendezettLancoltLista<ILejatszhato> keszlet { get; set; }
 
         public Konyvtar()
         {
-            keszlet = new ElsoElemek();
-            elsoElemek = new RendezettLancoltLista<ILejatszhato>();
+            
+            keszlet = new RendezettLancoltLista<ILejatszhato>();
         }
 
         public void Beolvasas()
         {
-            //parhuzamosan tegyük be a dolgokat, majd járjuk be a két tömbböt
+            
+            StreamReader sr = new StreamReader("adatok.txt");
+            while (!sr.EndOfStream)
+            {
 
+            }
+            sr.Close();
         }
     }
     

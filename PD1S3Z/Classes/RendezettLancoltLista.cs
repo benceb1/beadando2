@@ -8,6 +8,10 @@ namespace PD1S3Z
 {
     class RendezettLancoltLista<T> where T : ILejatszhato
     {
+        //külső táblázat
+        private ListaElem[] elsoElemek = new ListaElem[6];
+        
+
         private ListaElem fej;
         class ListaElem
         {
@@ -86,6 +90,22 @@ namespace PD1S3Z
             return false;
         }
 
-
+        public RendezettLancoltLista<T> listaStilusSzerint(Stilus stilus)
+        {
+            Kulcs kulcs = new Kulcs(stilus);
+            RendezettLancoltLista<T> stilusElemek = new RendezettLancoltLista<T>();
+            //---
+            ListaElem p = elsoElemek[(int)stilus];
+            ListaElem e = null;
+            while (p != null && p.kulcs == kulcs)
+            {
+                stilusElemek.Beszuras(p.tartalom);
+                e = p;
+                p = p.kovetkezo;
+                e = null;
+            }
+            //---
+            return stilusElemek;
+        }
     }
 }

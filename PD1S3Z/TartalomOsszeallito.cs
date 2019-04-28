@@ -8,5 +8,9 @@ namespace PD1S3Z
 {
     class TartalomOsszeallito
     {
+        //rendezett lancolt
+        //ido
+
+
     }
 }

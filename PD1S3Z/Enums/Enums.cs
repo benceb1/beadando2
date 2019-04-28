@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace PD1S3Z
 {
-    enum Stilus { Csaladias=1, Romantikus=2, Mulatos=3, Nyalas=4, RockNRoll=5,Jazz=6 }
+    enum Stilus { Csaladias=0, Romantikus=1, Mulatos=2, Nyalas=3, RockNRoll=4,Jazz=5 }
 }
