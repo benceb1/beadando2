@@ -43,13 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BakelitLemez.cs" />
+    <Compile Include="Classes\ElsoElemek.cs" />
     <Compile Include="Classes\Film.cs" />
+    <Compile Include="Classes\Kulcs.cs" />
     <Compile Include="Classes\Lejatszhato.cs" />
+    <Compile Include="Classes\RendezettLancoltLista.cs" />
     <Compile Include="Classes\TorrentZene.cs" />
     <Compile Include="Classes\VasaroltZene.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Interfaces\ILejatszhato.cs" />
-    <Compile Include="Lista.cs" />
+    <Compile Include="Konyvtar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

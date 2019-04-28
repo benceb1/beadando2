@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace PD1S3Z
 {
     interface ILejatszhato
-    {
+    { 
+        string Cim { get; set; }
         int SzerzoiJogij { get; set; }
         double Hossz { get; set; }
 
