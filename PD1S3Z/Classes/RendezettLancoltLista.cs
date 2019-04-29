@@ -26,6 +26,22 @@ namespace PD1S3Z
             }
 
         }
+
+        public ILejatszhato this[int index]
+        {
+            get
+            {
+                int belsoIndex = 0;
+                ListaElem p = fej;
+                while (p != null && belsoIndex!=index)
+                {
+                    p = p.kovetkezo;
+                    belsoIndex++;
+                }
+                return p.tartalom;
+            }
+        }
+
         private ListaElem ujElem(T tartalom)
         {
             return new ListaElem()
@@ -51,11 +67,13 @@ namespace PD1S3Z
             {
                 uj.kovetkezo = fej;
                 fej = uj;
+                elsoElemek[(int)fej.tartalom.Stilus] = fej;
             }
             else//különben meg akárhol is van, beteszi az e és a p közé
             {
                 uj.kovetkezo = p;
                 e.kovetkezo = uj;
+                elsoElemek[(int)uj.tartalom.Stilus] = uj;
             }
         }
         //torles
@@ -128,6 +146,30 @@ namespace PD1S3Z
         private void Feldolgoz(ListaElem elem)
         {
             Console.WriteLine(elem);
+        }
+
+        public double osszegzettIdo()
+        {
+            double ossz = 0;
+            ListaElem p = fej;
+            while (p != null)
+            {
+                ossz += p.tartalom.Hossz;
+                p = p.kovetkezo;
+            }
+            return ossz;
+        }
+
+        public int listaMeret()
+        {
+            int ossz = 0;
+            ListaElem p = fej;
+            while (p != null)
+            {
+                ossz++;
+                p = p.kovetkezo;
+            }
+            return ossz;
         }
     }
 }
