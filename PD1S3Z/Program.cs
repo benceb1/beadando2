@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PD1S3Z
 {
+
     class Program
     {
         
@@ -24,9 +25,17 @@ namespace PD1S3Z
             string stilus = Console.ReadLine();
             Console.WriteLine("Adja meg a kívánt idõ hosszúságát percek számában!");
             int perc = int.Parse(Console.ReadLine());*/
-            TartalomOsszeallito tartalomOsszeallito = new TartalomOsszeallito(26, konnyvtar.keszlet.listaStilusSzerint(Stilus.Csaladias));
+
+            TartalomOsszeallito tartalomOsszeallito = new TartalomOsszeallito();
+
+            konnyvtar.keszlet.EsemenyekFelvitele(tartalomOsszeallito.Osszeallitas);
+
+            tartalomOsszeallito.setKiinduloAdatok(26, konnyvtar.keszlet.listaStilusSzerint(Stilus.Csaladias));
+            EventService eventService = new EventService();
+            tartalomOsszeallito.esemenyFeliratkozas(eventService.ujOptimalis);
             tartalomOsszeallito.Osszeallitas();
 
+            konnyvtar.keszlet[0].setSzerzoJogdij(32);
 
         }
     }

@@ -8,19 +8,25 @@ namespace PD1S3Z
 {
     class TartalomOsszeallito
     {
+        public delegate void UjOptimalisEventHandler(object source, UjOptimalisEventArgs args);
+        private event UjOptimalisEventHandler ujOptimalis;
+
         //rendezett lancolt
         public RendezettLancoltLista<ILejatszhato> stilusElemek { get; set; }
 
         public double ido { get; set; }
         //ido
 
-        public TartalomOsszeallito(double ido, RendezettLancoltLista<ILejatszhato>elemek)
+        public TartalomOsszeallito()
+        {
+            
+        }
+
+        public void setKiinduloAdatok(double ido, RendezettLancoltLista<ILejatszhato> elemek)
         {
             stilusElemek = elemek;
             this.ido = ido;
         }
-
-        
 
         public void Osszeallitas()
         {
@@ -32,12 +38,15 @@ namespace PD1S3Z
                 OPT[i] = true;
             }
             Console.WriteLine();
-            BackTrack(0, ref E, ref OPT);
 
-            for (int i = 0; i < OPT.Length; i++)
+            int szam = 0;
+
+            BackTrack(0, ref E, ref OPT, ref szam);
+
+            /*for (int i = 0; i < OPT.Length; i++)
             {
                 Console.WriteLine(OPT[i]);
-            }
+            }*/
         }
 
         public void kiir(bool[] t)
@@ -48,7 +57,7 @@ namespace PD1S3Z
             }
         }
 
-        public void BackTrack(int szint, ref bool[] E, ref bool[] OPT)
+        public void BackTrack(int szint, ref bool[] E, ref bool[] OPT, ref int szam)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -57,21 +66,37 @@ namespace PD1S3Z
                 {
                     if(szint == E.Length-1)
                     {
-                        
-                        if (Osszeg(E) < Osszeg(OPT))
+                        if (Osszeg(E) < Osszeg(OPT)) 
                         {
-                            for (int j = 0; j < OPT.Length; j++)
+                            if (szam == 0)
                             {
-                                OPT[i] = E[i];
+                                for (int j = 0; j < OPT.Length; j++)
+                                {
+                                    bool a = E[j];
+                                    OPT[j] = a;
+                                }
+                                szam = Osszeg(E);
                             }
-                            Console.WriteLine("asdasdasdsad");
+                            else if(OsszIdo(E) > ido - 5)
+                            {
+                                for (int j = 0; j < OPT.Length; j++)
+                                {
+                                    bool a = E[j];
+                                    OPT[j] = a;
+                                }
+                                szam = Osszeg(E);
+                                //Console.WriteLine("uj");
+                                OnUjOptimalis(OsszIdo(OPT), szam, OPT);
+                            }
+                            /*Console.WriteLine("asdasdasdsad");
                             kiir(OPT);
-                            Console.WriteLine();
+                            Console.WriteLine(Osszeg(E));
+                            Console.WriteLine();*/
                         }   
                     }
                     else
                     {
-                        BackTrack(szint+1, ref E, ref OPT);
+                        BackTrack(szint+1, ref E, ref OPT, ref szam);
                     }
                 }
             }
@@ -85,9 +110,24 @@ namespace PD1S3Z
                 if (E[i])
                     ossz += stilusElemek[i].Hossz;
             }
-            if (ossz < ido)
+            if (ossz < ido+5)
                 return true;
             return false;
+        }
+
+        public double OsszIdo(bool[] E)
+        {
+            double osszeg = 0;
+
+            for (int i = 0; i < E.Length; i++)
+            {
+                if (E[i])
+                {
+                    osszeg += stilusElemek[i].Hossz;
+                }
+            }
+
+            return osszeg;
         }
 
         public int Osszeg(bool[] E)
@@ -96,9 +136,33 @@ namespace PD1S3Z
             for (int i = 0; i < E.Length; i++)
             {
                 if (E[i])
-                    osszeg += stilusElemek[i].SzerzoiJogij;
+                    osszeg += stilusElemek[i].SzerzoiJogdij;
             }
             return osszeg;
+        }
+
+        //eseményekhez
+        protected virtual void OnUjOptimalis(double osszeallitasIdeje, int Ar, bool[] OPT)
+        {
+            if (ujOptimalis != null)
+            {
+                ujOptimalis(this, new UjOptimalisEventArgs()
+                {
+                    Ar = Ar,
+                    Ido = osszeallitasIdeje,
+                    OPT = OPT,
+                    Osszeallitas = stilusElemek
+                });
+            }
+        }
+
+        public void esemenyFeliratkozas(UjOptimalisEventHandler method)
+        {
+            ujOptimalis += method;
+        }
+        public void esemenyLeiratkozas(UjOptimalisEventHandler method)
+        {
+            ujOptimalis -= method;
         }
     }
 }

@@ -109,7 +109,7 @@ namespace PD1S3Z
         {
             if (elso.Hossz == masodik.Hossz
                 && elso.Stilus == masodik.Stilus
-                && elso.SzerzoiJogij == masodik.SzerzoiJogij
+                && elso.SzerzoiJogdij == masodik.SzerzoiJogdij
                 && elso.Cim == masodik.Cim)
                 return true;
             return false;
@@ -139,6 +139,15 @@ namespace PD1S3Z
             while (p != null)
             {
                 Feldolgoz(p);
+                p = p.kovetkezo;
+            }
+        }
+        public void EsemenyekFelvitele(Action a)
+        {
+            ListaElem p = fej;
+            while (p != null)
+            {
+                p.tartalom.esemenyFeliratkozas(a);
                 p = p.kovetkezo;
             }
         }

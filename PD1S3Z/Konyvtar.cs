@@ -30,6 +30,8 @@ namespace PD1S3Z
             sr.Close();
         }
         
+        
+
         private ILejatszhato sorElem(string[] sor)
         {
             switch (sor[0])
@@ -38,7 +40,7 @@ namespace PD1S3Z
                     return new TorrentZene()
                     {
                         Cim = sor[1],
-                        SzerzoiJogij = int.Parse(sor[2]),
+                        SzerzoiJogdij = int.Parse(sor[2]),
                         Hossz = int.Parse(sor[3]),
                         Stilus = (Stilus)int.Parse(sor[4])
                     };
@@ -47,7 +49,7 @@ namespace PD1S3Z
                     return new VasaroltZene()
                     {
                         Cim = sor[1],
-                        SzerzoiJogij = int.Parse(sor[2]),
+                        SzerzoiJogdij = int.Parse(sor[2]),
                         Hossz = int.Parse(sor[3]),
                         Stilus = (Stilus)int.Parse(sor[4])
                     };
@@ -56,7 +58,7 @@ namespace PD1S3Z
                     return new Film()
                     {
                         Cim = sor[1],
-                        SzerzoiJogij = int.Parse(sor[2]),
+                        SzerzoiJogdij = int.Parse(sor[2]),
                         Hossz = int.Parse(sor[3]),
                         Stilus = (Stilus)int.Parse(sor[4])
                     };
@@ -65,7 +67,7 @@ namespace PD1S3Z
                     return new BakelitLemez()
                     {
                         Cim = sor[1],
-                        SzerzoiJogij = int.Parse(sor[2]),
+                        SzerzoiJogdij = int.Parse(sor[2]),
                         Hossz = int.Parse(sor[3]),
                         Stilus = (Stilus)int.Parse(sor[4])
                     };

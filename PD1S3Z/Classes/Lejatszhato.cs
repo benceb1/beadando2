@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace PD1S3Z
 {
+    public delegate void ArvaltozasMetodus();
     abstract class Lejatszhato : ILejatszhato
     {
-        
+        public ArvaltozasMetodus arvaltozas { get; set; }
 
         public string Cim { get; set; }
-        public int SzerzoiJogij { get; set; }
+        public int SzerzoiJogdij { get; set; }
         public double Hossz { get; set; }
         public Stilus Stilus { get; set; }
 
         protected Lejatszhato(string cim, int szerzoiJogij, double hossz, Stilus stilus)
         {
             Cim = cim;
-            SzerzoiJogij = szerzoiJogij;
+            SzerzoiJogdij = szerzoiJogij;
             Hossz = hossz;
             Stilus = stilus;
         }
@@ -27,9 +28,27 @@ namespace PD1S3Z
 
         }
 
+        public void setSzerzoJogdij(int szerzoJogdij)
+        {
+            SzerzoiJogdij = szerzoJogdij;
+
+            onArvaltozas();
+        }
+
+        public void esemenyFeliratkozas(Action a)
+        {
+            arvaltozas = new ArvaltozasMetodus(a);
+        }
+
         public override string ToString()
         {
-            return string.Format($"{Cim} {SzerzoiJogij} {Hossz} {Stilus.ToString()}");
+            return string.Format($"{Cim} {SzerzoiJogdij} {Hossz} {Stilus.ToString()}");
+        }
+
+        protected virtual void onArvaltozas()
+        {
+            if (arvaltozas != null) //kéne egy vizsgálat, hogy ez az elem szerepel e a stíluselemek között
+                arvaltozas();
         }
     }
 }

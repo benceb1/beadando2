@@ -9,12 +9,13 @@ namespace PD1S3Z
     interface ILejatszhato
     { 
         string Cim { get; set; }
-        int SzerzoiJogij { get; set; }
+        int SzerzoiJogdij { get; set; }
         double Hossz { get; set; }
 
         Stilus Stilus { get; set; }
+        void esemenyFeliratkozas(Action a);
+        void setSzerzoJogdij(int szerzoJogdij);
 
-        
 
     }
 }
