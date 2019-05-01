@@ -142,14 +142,26 @@ namespace PD1S3Z
                 p = p.kovetkezo;
             }
         }
-        public void EsemenyekFelvitele(Action a)
+        //ebben fel kéne iratkoztatni ezt a vizsgálatot ami alatta van, hogy ha lefut az event, akkor a vizsgálat szerint fusson le benne a többi
+        public void EsemenyekFelvitele(ArvaltozasEventHandler h)
         {
             ListaElem p = fej;
             while (p != null)
             {
-                p.tartalom.esemenyFeliratkozas(a);
+                p.tartalom.esemenyFeliratkozas(h);
                 p = p.kovetkezo;
             }
+        }
+
+        public bool szerepelE(ILejatszhato lejatszhato)
+        {
+            ListaElem p = fej;
+            while (p != null)
+            {
+                if (p.tartalom.Cim == lejatszhato.Cim) return true;
+                p = p.kovetkezo;
+            }
+            return false;
         }
 
         private void Feldolgoz(ListaElem elem)

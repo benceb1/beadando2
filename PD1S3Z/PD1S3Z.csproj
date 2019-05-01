@@ -50,6 +50,7 @@
     <Compile Include="Classes\TorrentZene.cs" />
     <Compile Include="Classes\VasaroltZene.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="ExceptionAndEvent\ArvaltozasEventArgs.cs" />
     <Compile Include="ExceptionAndEvent\EventService.cs" />
     <Compile Include="ExceptionAndEvent\UjOptimalisEventArgs.cs" />
     <Compile Include="Interfaces\ILejatszhato.cs" />

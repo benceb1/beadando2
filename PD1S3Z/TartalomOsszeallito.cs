@@ -14,6 +14,21 @@ namespace PD1S3Z
         //rendezett lancolt
         public RendezettLancoltLista<ILejatszhato> stilusElemek { get; set; }
 
+        //stiluselemek.szerepel e (Ilejatszhato)
+        //talán egy árváltozás event args ban átadni egy itteni metódusnak
+        /*
+         * 
+         * public void (object asdf, ArvaltozasEventArgs args){
+         *  if(Stiluselemek.szerepele(args.lejatszato))
+         *      Osszeallitas();
+         * }
+         * */
+        public void arvaltozasEsemenye(object obj, ArvaltozasEventArgs args)
+        {
+            if (stilusElemek.szerepelE(args.Lejatszhato))
+                Osszeallitas();
+        }
+
         public double ido { get; set; }
         //ido
 

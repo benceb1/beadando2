@@ -28,7 +28,7 @@ namespace PD1S3Z
 
             TartalomOsszeallito tartalomOsszeallito = new TartalomOsszeallito();
 
-            konnyvtar.keszlet.EsemenyekFelvitele(tartalomOsszeallito.Osszeallitas);
+            konnyvtar.keszlet.EsemenyekFelvitele(tartalomOsszeallito.arvaltozasEsemenye);
 
             tartalomOsszeallito.setKiinduloAdatok(26, konnyvtar.keszlet.listaStilusSzerint(Stilus.Csaladias));
             EventService eventService = new EventService();

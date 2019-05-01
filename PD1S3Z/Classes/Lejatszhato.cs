@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace PD1S3Z
 {
-    public delegate void ArvaltozasMetodus();
+    public delegate void ArvaltozasEventHandler(object source, ArvaltozasEventArgs args);
     abstract class Lejatszhato : ILejatszhato
     {
-        public ArvaltozasMetodus arvaltozas { get; set; }
+        
+        public event ArvaltozasEventHandler arValtozas;
 
         public string Cim { get; set; }
         public int SzerzoiJogdij { get; set; }
@@ -35,9 +36,9 @@ namespace PD1S3Z
             onArvaltozas();
         }
 
-        public void esemenyFeliratkozas(Action a)
+        public void esemenyFeliratkozas(ArvaltozasEventHandler handler)
         {
-            arvaltozas = new ArvaltozasMetodus(a);
+            arValtozas += handler;
         }
 
         public override string ToString()
@@ -47,8 +48,8 @@ namespace PD1S3Z
 
         protected virtual void onArvaltozas()
         {
-            if (arvaltozas != null) //kéne egy vizsgálat, hogy ez az elem szerepel e a stíluselemek között
-                arvaltozas();
+            if (arValtozas != null) //kéne egy vizsgálat, hogy ez az elem szerepel e a stíluselemek között
+                arValtozas(this, new ArvaltozasEventArgs() { Lejatszhato = this});
         }
     }
 }
